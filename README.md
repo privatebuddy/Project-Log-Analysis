@@ -13,12 +13,13 @@ https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsd
 
 # Setup
 1. Install Virtual Machine if you are running non linux base computer
-  1.1 Install Virtual Box : https://www.virtualbox.org/wiki/Downloads
-  1.2 Install Vagrant : https://www.vagrantup.com/downloads.html
-  1.3 Download VM Configuration : https://s3.amazonaws.com/video.udacity-data.com/topher/2018/April/5acfbfa3_fsnd-virtual-machine/fsnd-virtual-machine.zip
+  - Install Virtual Box : https://www.virtualbox.org/wiki/Downloads
+  - Install Vagrant : https://www.vagrantup.com/downloads.html
+  - Download VM Configuration : https://s3.amazonaws.com/video.udacity-data.com/topher/2018/April/5acfbfa3_fsnd-virtual-machine/fsnd-virtual-machine.zip
+  
 2. Install PostgreSQL 
-  2.1 via Homebrew if you are macOS, Ubontu
-  2.2 install on vm
+  - via Homebrew if you are macOS, Ubontu
+  - install on vm
 3. run code by 'python LogAnalysis.py' on terminal 
 
 # Design
