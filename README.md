@@ -25,10 +25,10 @@ https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsd
 # Design
 
 1. Question 1 : What are the most popular three articles of all time?
-   In the log table, they are data provide about the article URL path which is in format of ("/article/article-slug") so the program is designed to count all of the path columns and then join articles table on slug which is combined with "/article" to be the resulting program expect. Then on the Python part, the program is using replace string to format the data to be easier to read in the console.
+  - In the log table, they are data provide about the article URL path which is in format of ("/article/article-slug") so the program is designed to count all of the path columns and then join articles table on slug which is combined with "/article" to be the resulting program expect. Then on the Python part, the program is using replace string to format the data to be easier to read in the console.
    
 2. Question 2 : Who are the most popular article authors of all time? 
-  In the author's table that has the name of each author that write an article on the website. First, the program is joining the authors with articles using authors primary key (id), and foreign key on the article (author) then join it with log table on a path which is contain article slug of each author. Then on the Python part, the program is using replace string to format the data to be easier to read in the console.
+  - In the author's table that has the name of each author that write an article on the website. First, the program is joining the authors with articles using authors primary key (id), and foreign key on the article (author) then join it with log table on a path which is contain article slug of each author. Then on the Python part, the program is using replace string to format the data to be easier to read in the console.
   
-3. Quesgtion 3 : On which days did more than 1% of requests lead to errors?
-  For this question, Program is solved by two query which is one for good connection (200 OK) and bad connection (404 NOT FOUND) which is collected in the status column on the log table. By using a select status column with the result in good or bad into two arrays. Then on the Python part, the program is a loop on each of the data set to find which date contain more than 1% error.
+3. Question 3 : On which days did more than 1% of requests lead to errors?
+  - For this question is solve by aggregation on both all traffic compare to the bad traffic (404 NOT Found) by using SQL query on both good and bad then using COALESCE function to calculate the percentage of the error and using python to filter out the answer of more than 2 %

@@ -18,10 +18,10 @@ JOIN log ON path = format('/article/'||articles.slug)
 GROUP BY name ORDER BY total DESC"""
 SQL_QUERY_3 = """SELECT
     date(time) as Date,
-    Count(CASE status when '200 OK' then 1 else null end) as SuccessTime,
+    Count(*) as SuccessTime,
     Count(CASE status when '404 NOT FOUND' then 1 else null end) as FailTime,
     (COALESCE(Count(CASE status when '404 NOT FOUND' then 1 else null end),0)
-     *100)/ Count(CASE status when '200 OK' then 1 else null end)
+     *100)/ Count(*)
      as ErrorPercentage
 from
 log
@@ -39,27 +39,28 @@ def get_data_from_query(query, database_name):
 
 
 def question_one():
-    report_string = "Question 1 \n"
-    for data in get_data_from_query(SQL_QUERY_1, DB_NAME):
-        report_string += '{0} {2} {1} {3} \n'.format(data[0].replace("/article/", "").replace("-", " "), data[1], ":", "views")
-    return report_string
+    st = "Question 1 \n"
+    for d in get_data_from_query(SQL_QUERY_1, DB_NAME):
+        article_name = d[0].replace("/article/", "").replace("-", " ")
+        st += '{0} {2} {1} views\n'.format(article_name, d[1], ":")
+    return st
 
 
 def question_two():
-    report_string="Question 2 \n"
-    for data in get_data_from_query(SQL_QUERY_2, DB_NAME):
-        report_string += '{0} {1} {2} {3}'.format(data[0], ":", data[1], "views \n")
+    st = "Question 2 \n"
+    for d in get_data_from_query(SQL_QUERY_2, DB_NAME):
+        st += '{0} {1} {2} views\n'.format(d[0], ":", d[1])
 
-    return report_string
+    return st
 
 
 def question_three():
-    report_string = "Question 3 \n"
-    for data in get_data_from_query(SQL_QUERY_3, DB_NAME):
-        if data[3] > 1:
-            report_string += '{0} {1} {2} {3} {4}'.format("Date:", data[0], "has bad Traffic of ", data[3], "% \n")
+    st = "Question 3 \n"
+    for d in get_data_from_query(SQL_QUERY_3, DB_NAME):
+        if d[3] > 1:
+            st += '{0} has bad Traffic of {1} %\n'.format(d[0], d[3])
 
-    return report_string
+    return st
 
 
 def get_all_answer():
